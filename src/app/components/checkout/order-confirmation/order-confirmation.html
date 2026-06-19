@@ -1,0 +1,18 @@
+<div style="max-width: 600px; margin: 40px auto; text-align: center; padding: 40px; border: 2px solid #28a745; border-radius: 8px; background: #f8fff8;">
+  <h1 style="color: #28a745;">✅ Order Confirmed!</h1>
+  <p style="font-size: 1.2rem;">Thank you for your purchase!</p>
+  <p><strong>Order Number:</strong> #{{ orderNumber }}</p>
+  <p>We have received your order and will process it shortly.</p>
+  
+  <div style="margin: 30px 0; padding: 20px; background: #f8f9fa; border-radius: 4px; text-align: left;">
+    <h4>Order Summary</h4>
+    <p><strong>Items:</strong> {{ cartService.getCartItems().length }}</p>
+    <p><strong>Total Amount:</strong> {{ cartService.getTotal() | currency }}</p>
+  </div>
+
+  <button 
+    (click)="goHome()" 
+    style="background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 4px; font-size: 1.1rem; cursor: pointer;">
+    Continue Shopping
+  </button>
+</div>

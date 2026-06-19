@@ -1,0 +1,29 @@
+<h2>Our Products</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;">
+  <div *ngFor="let product of products" style="border: 1px solid #ddd; border-radius: 8px; padding: 16px; width: 220px; text-align: center;">
+    <img [src]="product.url" [alt]="product.name" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px;">
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.price | currency }}</p>
+    <p style="font-size: 14px; color: #666;">{{ product.description }}</p>
+    <input type="number" [(ngModel)]="quantities[product.id]" min="1" style="width: 60px; padding: 4px; margin: 8px 0;">
+    <br>
+    <button (click)="addToCart(product)" style="background: #007bff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+      Add to Cart
+    </button>
+    <br>
+    <button (click)="selectProduct(product)" style="margin-top: 8px; background: #6c757d; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+      Show Details
+    </button>
+    <br>
+    <a [routerLink]="['/product', product.id]" style="display: block; margin-top: 8px; color: #007bff; text-decoration: none;">View Details Page</a>
+  </div>
+</div>
+
+<div *ngIf="selectedProduct" style="margin-top: 40px; padding: 20px; border-top: 2px solid #007bff;">
+  <h3>Product Details (Child Component)</h3>
+  <app-product-details 
+    [product]="selectedProduct" 
+    (productAdded)="onProductAdded($event)">
+  </app-product-details>
+  <button (click)="selectedProduct = null" style="margin-top: 10px;">Close Details</button>
+</div>
